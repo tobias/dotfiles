@@ -1,0 +1,18 @@
+# ~.autotest
+require 'autotest/fsevent'
+#require 'redgreen/autotest'
+require 'autotest/growl'
+require 'autotest_notification'
+SPEAKING = true
+DOOM_EDITION = false
+BUUF = true
+PENDING = false
+STICKY = false
+SUCCESS_SOUND = ''
+FAILURE_SOUND = ''
+
+Autotest.add_hook :initialize do |autotest|
+  autotest.add_exception(/_flymake\.rb$/)
+  false
+end
+
