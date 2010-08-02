@@ -10,55 +10,55 @@ GIT_PS1_SHOWSTASHSTATE=1 #... if something is stashed($)
 GIT_PS1_SHOWUNTRACKEDFILES=1 #... untracked files(%)
 
 function __rvm_prompt {
-  ~/.rvm/bin/rvm-prompt i v g
+    ~/.rvm/bin/rvm-prompt i v g
 }
 
-bash_prompt() {
-  local NONE="\[\033[0m\]"    # unsets color to term's fg color
+function __git_prompt {
+    __git_ps1 "[%s]"
+}
+
+
+NONE="\e[0m"    # unsets color to term's fg color
 
   # regular colors
-  local K="\[\033[0;30m\]"    # black
-  local R="\[\033[0;31m\]"    # red
-  local G="\[\033[0;32m\]"    # green
-  local Y="\[\033[0;33m\]"    # yellow
-  local B="\[\033[0;34m\]"    # blue
-  local M="\[\033[0;35m\]"    # magenta
-  local C="\[\033[0;36m\]"    # cyan
-  local W="\[\033[0;37m\]"    # white
+K="\e[0;30m"    # black
+R="\e[0;31m"    # red
+G="\e[0;32m"    # green
+Y="\e[0;33m"    # yellow
+B="\e[0;34m"    # blue
+M="\e[0;35m"    # magenta
+C="\e[0;36m"    # cyan
+W="\e[0;37m"    # white
 
   # emphasized (bolded) colors
-  local EMK="\[\033[1;30m\]"
-  local EMR="\[\033[1;31m\]"
-  local EMG="\[\033[1;32m\]"
-  local EMY="\[\033[1;33m\]"
-  local EMB="\[\033[1;34m\]"
-  local EMM="\[\033[1;35m\]"
-  local EMC="\[\033[1;36m\]"
-  local EMW="\[\033[1;37m\]"
+EMK="\e[1;30m"
+EMR="\e[1;31m"
+EMG="\e[1;32m"
+EMY="\e[1;33m"
+EMB="\e[1;34m"
+EMM="\e[1;35m"
+EMC="\e[1;36m"
+EMW="\e[1;37m"
 
   # background colors
-  local BGK="\[\033[40m\]"
-  local BGR="\[\033[41m\]"
-  local BGG="\[\033[42m\]"
-  local BGY="\[\033[43m\]"
-  local BGB="\[\033[44m\]"
-  local BGM="\[\033[45m\]"
-  local BGC="\[\033[46m\]"
-  local BGW="\[\033[47m\]"
+BGK="\e[40m"
+BGR="\e[41m"
+BGG="\e[42m"
+BGY="\e[43m"
+BGB="\e[44m"
+BGM="\e[45m"
+BGC="\e[46m"
+BGW="\e[47m"
 
-  local KOW="\[\033[0;30;47m\]"
-  local WOB="\[\033[0;37;44m\]"
-  local WOR="\[\033[0;37;41m\]"
+KOW="\e[0;30;47m"
+WOB="\e[0;37;44m"
+WOR="\e[0;37;41m"
 
-  local UC=$W                 # user's color
-  [ $UID -eq "0" ] && UC=$WOR   # root's color
+UC=$W                 # user's color
+[ $UID -eq "0" ] && UC=$WOR   # root's color
 
-  PS1="\n$EMY>>$UC \u $W@ \h $Y($(__rvm_prompt)) $KOW\w$NONE $WOB$(__git_ps1 "[%s]")$NONE $Y<< $NONE \n $ "
-}
+PS1='\n{$EMY}>>$UC \u $W@ \h $Y($(__rvm_prompt)) $KOW\w$NONE $WOB$(__git_prompt)$NONE $Y<< $NONE \n $ '
 
-bash_prompt
-unset bash_prompt
- 
 export RAILS_ENV=development
 
 # overrides /usr/bin/w, but I care not
@@ -73,3 +73,51 @@ fi
 
 if [ -s ~/.rvm/scripts/rvm ] ; then source ~/.rvm/scripts/rvm ; fi
 
+
+
+function bash_prompt {
+    local NONE="\e[0m"    # unsets color to term's fg color
+    
+    #fg colors
+    local K="\e[0;30m"    # black
+    local R="\e[0;31m"    # red
+    local G="\e[0;32m"    # green
+    local Y="\e[0;33m"    # yellow
+    local B="\e[0;34m"    # blue
+    local M="\e[0;35m"    # magenta
+    local C="\e[0;36m"    # cyan
+    local W="\e[0;37m"    # white
+
+    # emphasized (bolded) colors
+    local EMK="\e[1;30m"
+    local EMR="\e[1;31m"
+    local EMG="\e[1;32m"
+    local EMY="\e[1;33m"
+    local EMB="\e[1;34m"
+    local EMM="\e[1;35m"
+    local EMC="\e[1;36m"
+    local EMW="\e[1;37m"
+
+    # background colors
+    local BGK="\e[40m"
+    local BGR="\e[41m"
+    local BGG="\e[42m"
+    local BGY="\e[43m"
+    local BGB="\e[44m"
+    local BGM="\e[45m"
+    local BGC="\e[46m"
+    local BGW="\e[47m"
+
+    # color on color
+    local KOW="\e[0;30;47m"
+    local WOB="\e[0;37;44m"
+    local WOR="\e[0;37;41m"
+
+    local UC=$W                 # user's color
+    [ $UID -eq "0" ] && UC=$WOR   # root's color
+
+    PS1="\n$EMY>>$UC \u $W@ \h $Y(\$(__rvm_prompt)) $KOW\w$NONE $WOB\$(__git_prompt)$NONE $Y<< $NONE \n $ "
+}
+
+bash_prompt
+unset bash_prompt
