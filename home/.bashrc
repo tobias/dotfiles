@@ -4,61 +4,6 @@ export EC2_PRIVATE_KEY=~/w/dealer_ignition/config/ec2/pk-2T3FBTVRV6BROBPO2QVZIHA
 export EC2_CERT=~/w/dealer_ignition/config/ec2/cert-2T3FBTVRV6BROBPO2QVZIHAQSTWYAPLO.pem
 
 export PATH=/opt/local/bin:/opt/local/sbin:${PATH}:~/bin:/usr/local/mysql/bin:/usr/local/ec2tools/bin:/opt/local/lib/postgresql84/bin
-
-GIT_PS1_SHOWDIRTYSTATE=1 #... untagged(*) and staged(+) changes
-GIT_PS1_SHOWSTASHSTATE=1 #... if something is stashed($)
-GIT_PS1_SHOWUNTRACKEDFILES=1 #... untracked files(%)
-
-function __rvm_prompt {
-    ~/.rvm/bin/rvm-prompt i v g
-}
-
-function __git_prompt {
-    __git_ps1 "[%s]"
-}
-
-
-NONE="\e[0m"    # unsets color to term's fg color
-
-  # regular colors
-K="\e[0;30m"    # black
-R="\e[0;31m"    # red
-G="\e[0;32m"    # green
-Y="\e[0;33m"    # yellow
-B="\e[0;34m"    # blue
-M="\e[0;35m"    # magenta
-C="\e[0;36m"    # cyan
-W="\e[0;37m"    # white
-
-  # emphasized (bolded) colors
-EMK="\e[1;30m"
-EMR="\e[1;31m"
-EMG="\e[1;32m"
-EMY="\e[1;33m"
-EMB="\e[1;34m"
-EMM="\e[1;35m"
-EMC="\e[1;36m"
-EMW="\e[1;37m"
-
-  # background colors
-BGK="\e[40m"
-BGR="\e[41m"
-BGG="\e[42m"
-BGY="\e[43m"
-BGB="\e[44m"
-BGM="\e[45m"
-BGC="\e[46m"
-BGW="\e[47m"
-
-KOW="\e[0;30;47m"
-WOB="\e[0;37;44m"
-WOR="\e[0;37;41m"
-
-UC=$W                 # user's color
-[ $UID -eq "0" ] && UC=$WOR   # root's color
-
-PS1='\n{$EMY}>>$UC \u $W@ \h $Y($(__rvm_prompt)) $KOW\w$NONE $WOB$(__git_prompt)$NONE $Y<< $NONE \n $ '
-
 export RAILS_ENV=development
 
 # overrides /usr/bin/w, but I care not
@@ -74,6 +19,17 @@ fi
 if [ -s ~/.rvm/scripts/rvm ] ; then source ~/.rvm/scripts/rvm ; fi
 
 
+GIT_PS1_SHOWDIRTYSTATE=1 #... untagged(*) and staged(+) changes
+GIT_PS1_SHOWSTASHSTATE=1 #... if something is stashed($)
+GIT_PS1_SHOWUNTRACKEDFILES=1 #... untracked files(%)
+
+function __rvm_prompt {
+    ~/.rvm/bin/rvm-prompt i v g
+}
+
+function __git_prompt {
+    __git_ps1 "[%s]"
+}
 
 function bash_prompt {
     local NONE="\e[0m"    # unsets color to term's fg color
