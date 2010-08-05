@@ -9,7 +9,7 @@ export RAILS_ENV=development
 # overrides /usr/bin/w, but I care not
 alias w='cd ~/w/dealer_ignition'
 # overrides /usr/bin/at, but I care not
-alias at='autotest -c -f'
+alias at='RUBY=`which ruby` autotest -c -f'
 alias dbm='rake db:migrate db:test:clone'
 
 if [ -f /opt/local/etc/bash_completion ]; then
