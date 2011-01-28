@@ -1,23 +1,23 @@
-export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
-export EC2_HOME=/usr/local/ec2tools
-export EC2_PRIVATE_KEY=~/w/dealer_ignition/config/ec2/pk-2T3FBTVRV6BROBPO2QVZIHAQSTWYAPLO.pem
-export EC2_CERT=~/w/dealer_ignition/config/ec2/cert-2T3FBTVRV6BROBPO2QVZIHAQSTWYAPLO.pem
+. ~/.path
 
-export PATH=/opt/local/bin:/opt/local/sbin:${PATH}:~/bin:/usr/local/mysql/bin:/usr/local/ec2tools/bin:/opt/local/lib/postgresql84/bin
-export RAILS_ENV=development
+umask 002
 
-# overrides /usr/bin/w, but I care not
-alias w='cd ~/w/dealer_ignition'
 # overrides /usr/bin/at, but I care not
 alias at='RUBY=`which ruby` autotest -c -f'
-alias dbm='rake db:migrate db:test:clone'
+alias ls='ls --color=auto -F'
+alias eo='emacsclient -n'
 
 if [ -f /opt/local/etc/bash_completion ]; then
     . /opt/local/etc/bash_completion
 fi
 
+if [ -f ~/.git-completion.sh ]; then
+    . ~/.git-completion.sh
+fi
+
 if [ -s ~/.rvm/scripts/rvm ] ; then source ~/.rvm/scripts/rvm ; fi
 
+export JAVA_HOME=/usr/java/default/jre
 
 GIT_PS1_SHOWDIRTYSTATE=1 #... untagged(*) and staged(+) changes
 GIT_PS1_SHOWSTASHSTATE=1 #... if something is stashed($)
@@ -69,11 +69,21 @@ function bash_prompt {
     local WOB="\e[0;37;44m"
     local WOR="\e[0;37;41m"
 
-    local UC=$W                 # user's color
-    [ $UID -eq "0" ] && UC=$WOR   # root's color
-
-    PS1="\n$EMY>>$UC \u $W@ \h $Y(\$(__rvm_prompt)) $KOW\w$NONE $WOB\$(__git_prompt)$NONE $Y<< $NONE \n $ "
+    [ $UID -eq "0" ] && local U="$WOR \u "
+    PS1="\n$EMY>>$U$W $Y(\$(__rvm_prompt)) $KOW\w$NONE $WOB\$(__git_prompt)$NONE $Y<< $NONE \n $ "
 }
 
 bash_prompt
 unset bash_prompt
+ 
+# Method missing for bash
+#trap 'if ! type -t $BASH_COMMAND >/dev/null; then ~/bin/shell_method_missing $BASH_COMMAND; fi' DEBUG
+
+#export TORQUEBOX_HOME=$HOME/w/torquebox/assemblage/assembly/target/stage/torquebox-1.0.0.Beta21
+#export TORQUEBOX_HOME=$HOME/w/torquebox-current
+#export JBOSS_HOME=$TORQUEBOX_HOME/jboss
+##export JRUBY_HOME=$TORQUEBOX_HOME/jruby
+#export JRUBY_HOME=$HOME/.rvm/rubies/jruby-1.5.2/bin/
+#export PATH=$JRUBY_HOME/bin:$PATH
+
+alias send-dc-patch='git send-email --thread --to=deltacloud-dev@incubator.apache.org --smtp-server=smtp.corp.redhat.com --suppress-cc=author'
