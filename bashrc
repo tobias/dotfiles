@@ -3,7 +3,12 @@
 
 umask 002
 
-alias ls='ls --color=auto -F'
+if [ $OSTYPE = "linux-gnu" ] ; then
+    alias ls='ls --color=auto -F' 
+else
+    alias ls='ls -GF'
+fi
+
 alias eo='emacsclient -n'
 alias dbm='rake db:migrate db:test:clone --trace'
 
@@ -12,8 +17,6 @@ if [ -f /opt/local/etc/bash_completion ]; then source /opt/local/etc/bash_comple
 if [ -f /usr/local/git/contrib/completion/git-completion.bash  ]; then source /usr/local/git/contrib/completion/git-completion.bash ; fi
 
 if [ -s ~/.rvm/scripts/rvm ] ; then source ~/.rvm/scripts/rvm ; fi
-
-export JAVA_HOME=/usr/java/default/jre
 
 GIT_PS1_SHOWDIRTYSTATE=1 #... untagged(*) and staged(+) changes
 GIT_PS1_SHOWSTASHSTATE=1 #... if something is stashed($)
@@ -81,5 +84,10 @@ unset bash_prompt
 ##export JRUBY_HOME=$TORQUEBOX_HOME/jruby
 #export JRUBY_HOME=$HOME/.rvm/rubies/jruby-1.5.2/bin/
 #export PATH=$JRUBY_HOME/bin:$PATH
+
+if [ $OSTYPE = "linux-gnu" ] ; then export JAVA_HOME=/usr/java/default/jre ; fi
+
+
+export MAVEN_OPTS='-Xmx512m -XX:MaxPermSize=128m'
 
 alias send-dc-patch='git send-email --thread --to=deltacloud-dev@incubator.apache.org --smtp-server=smtp.corp.redhat.com --suppress-cc=author'
