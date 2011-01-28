@@ -1,19 +1,15 @@
+#-*-sh-*-
 . ~/.path
 
 umask 002
 
-# overrides /usr/bin/at, but I care not
-alias at='RUBY=`which ruby` autotest -c -f'
 alias ls='ls --color=auto -F'
 alias eo='emacsclient -n'
+alias dbm='rake db:migrate db:test:clone --trace'
 
-if [ -f /opt/local/etc/bash_completion ]; then
-    . /opt/local/etc/bash_completion
-fi
-
-if [ -f ~/.git-completion.sh ]; then
-    . ~/.git-completion.sh
-fi
+#find bash_completion where you can
+if [ -f /opt/local/etc/bash_completion ]; then source /opt/local/etc/bash_completion ; fi
+if [ -f /usr/local/git/contrib/completion/git-completion.bash  ]; then source /usr/local/git/contrib/completion/git-completion.bash ; fi
 
 if [ -s ~/.rvm/scripts/rvm ] ; then source ~/.rvm/scripts/rvm ; fi
 
