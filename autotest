@@ -1,0 +1,14 @@
+# ~.autotest  -*-ruby-*-
+require 'autotest_notification'
+SPEAKING = false
+DOOM_EDITION = false
+BUUF = false
+PENDING = false
+STICKY = false
+SUCCESS_SOUND = ''
+FAILURE_SOUND = ''
+
+Autotest.add_hook :initialize do |autotest|
+  autotest.add_exception(/_flymake\.rb$/)
+  false
+end
