@@ -15,6 +15,7 @@ alias dbm='rake db:migrate db:test:clone --trace'
 #find bash_completion where you can
 if [ -f /opt/local/etc/bash_completion ]; then source /opt/local/etc/bash_completion ; fi
 if [ -f /usr/local/git/contrib/completion/git-completion.bash  ]; then source /usr/local/git/contrib/completion/git-completion.bash ; fi
+if [ -f ~/.git-completion  ]; then source ~/.git-completion ; fi
 
 if [ -s ~/.rvm/scripts/rvm ] ; then source ~/.rvm/scripts/rvm ; fi
 
