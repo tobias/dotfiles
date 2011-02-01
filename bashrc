@@ -11,6 +11,7 @@ fi
 
 alias eo='emacsclient -n'
 alias dbm='rake db:migrate db:test:clone --trace'
+alias j='jruby -S'
 
 #find bash_completion where you can
 if [ -f /opt/local/etc/bash_completion ]; then source /opt/local/etc/bash_completion ; fi
