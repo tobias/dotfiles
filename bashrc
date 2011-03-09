@@ -12,6 +12,7 @@ fi
 alias eo='emacsclient -n'
 alias dbm='rake db:migrate db:test:clone --trace'
 alias j='jruby -S'
+alias jts='jruby -S target/rspec-runner.rb -f p'
 
 #find bash_completion where you can
 if [ -f /opt/local/etc/bash_completion ]; then source /opt/local/etc/bash_completion ; fi
