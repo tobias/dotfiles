@@ -12,7 +12,9 @@ fi
 alias eo='emacsclient -n'
 alias dbm='rake db:migrate db:test:clone --trace'
 alias j='jruby -S'
-alias jts='jruby -S target/rspec-runner.rb -f p'
+alias j19='jruby --1.9 -S'
+alias jts='jruby -S target/rspec-runner.rb -f d'
+alias jts19='jruby --1.9 -S target/rspec-runner.rb -f d'
 
 #find bash_completion where you can
 if [ -f /opt/local/etc/bash_completion ]; then source /opt/local/etc/bash_completion ; fi
@@ -26,12 +28,14 @@ GIT_PS1_SHOWSTASHSTATE=1 #... if something is stashed($)
 GIT_PS1_SHOWUNTRACKEDFILES=1 #... untracked files(%)
 
 function __rvm_prompt {
-    ~/.rvm/bin/rvm-prompt i v g
+    local RVMP=`~/.rvm/bin/rvm-prompt i v g`
+    if [ "x$RVMP" != "x" ] ; then echo "($RVMP) " ; fi   
 }
 
 function __git_prompt {
     __git_ps1 "[%s]"
 }
+
 
 function bash_prompt {
     local NONE="\e[0m"    # unsets color to term's fg color
@@ -67,12 +71,13 @@ function bash_prompt {
     local BGW="\e[47m"
 
     # color on color
-    local KOW="\e[0;30;47m"
+    local KOW="\e[1;30;47m"
     local WOB="\e[0;37;44m"
     local WOR="\e[0;37;41m"
 
     [ $UID -eq "0" ] && local U="$WOR \u "
-    PS1="\n$EMY>>$U$W $Y(\$(__rvm_prompt)) $KOW\w$NONE $WOB\$(__git_prompt)$NONE $Y<< $NONE \n $ "
+
+    PS1="\n$KOW\w$NONE $KOW\$(__git_prompt)$K \$(__rvm_prompt)$NONE \n $ "
 }
 
 bash_prompt
@@ -89,8 +94,5 @@ unset bash_prompt
 #export PATH=$JRUBY_HOME/bin:$PATH
 
 if [ $OSTYPE = "linux-gnu" ] ; then export JAVA_HOME=/usr/java/default/jre ; fi
-
-
-export MAVEN_OPTS='-Xmx512m -XX:MaxPermSize=128m'
 
 alias send-dc-patch='git send-email --thread --to=deltacloud-dev@incubator.apache.org --smtp-server=smtp.corp.redhat.com --suppress-cc=author'

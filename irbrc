@@ -20,7 +20,7 @@ def add_lib
   $:.unshift('./lib/')
 end
 
-require 'rubygems'
+#require 'rubygems'
 #if force_require 'wirble'
 #  Wirble.init
 #  Wirble.colorize
@@ -36,10 +36,10 @@ require 'rubygems'
 #   end
 # end
 
-require 'logger'
-if ENV.include?('RAILS_ENV') && !Object.const_defined?('RAILS_DEFAULT_LOGGER')
-  Object.const_set('RAILS_DEFAULT_LOGGER', Logger.new(STDOUT))
-end
+#require 'logger'
+#if ENV.include?('RAILS_ENV') && !Object.const_defined?('RAILS_DEFAULT_LOGGER')
+#  Object.const_set('RAILS_DEFAULT_LOGGER', Logger.new(STDOUT))
+#end
 
 # if force_require 'hashery/opencascade', 'hashery'
 #   force_require 'yaml'
