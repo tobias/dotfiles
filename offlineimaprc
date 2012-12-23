@@ -1,0 +1,75 @@
+[general]
+accounts = tcrawley, gmail, redhat
+pythonfile = ~/.offlineimap.py
+maxsyncaccounts = 3
+
+[Account tcrawley]
+localrepository = tcrawley-local
+remoterepository = tcrawley-remote
+status_backend = sqlite
+
+[Repository tcrawley-local]
+type = Maildir
+localfolders = ~/Maildir/tcrawley.org
+
+[Repository tcrawley-remote]
+type = IMAP
+remotehost = mail.tcrawley.org
+remoteuser = toby@tcrawley.org
+remotepasseval = get_password_emacs("mail.tcrawley.org", 993)
+maxconnections = 3
+ssl = true
+
+[Account gmail]
+localrepository = gmail-local
+remoterepository = gmail-remote
+status_backend = sqlite
+maxage = 90
+
+[Repository gmail-local]
+type = Maildir
+localfolders = ~/Maildir/gmail.com
+
+[Repository gmail-remote]
+type = Gmail
+remoteuser = tcrawley@gmail.com
+remotepasseval = get_password_emacs("imap.gmail.com", 993)
+realdelete = no
+maxconnections = 3
+folderfilter = lambda name: name in ['INBOX', '[Gmail]/Drafts', '[Gmail]/Sent Mail', '[Gmail]/Trash']
+
+[Account gmail]
+localrepository = gmail-local
+remoterepository = gmail-remote
+status_backend = sqlite
+maxage = 90
+
+[Repository gmail-local]
+type = Maildir
+localfolders = ~/Maildir/gmail.com
+
+[Repository gmail-remote]
+type = Gmail
+remoteuser = tcrawley@gmail.com
+remotepasseval = get_password_emacs("imap.gmail.com", 993)
+realdelete = no
+maxconnections = 3
+folderfilter = lambda name: name in ['INBOX', '[Gmail]/Drafts', '[Gmail]/Sent Mail', '[Gmail]/Trash']
+
+[Account redhat]
+localrepository = redhat-local
+remoterepository = redhat-remote
+status_backend = sqlite
+maxage = 90
+
+[Repository redhat-local]
+type = Maildir
+localfolders = ~/Maildir/redhat.com
+
+[Repository redhat-remote]
+type = IMAP
+remotehost = mail.corp.redhat.com
+remoteuser = tcrawley
+remotepasseval = get_password_emacs("mail.corp.redhat.com", 993)
+maxconnections = 3
+ssl = true
