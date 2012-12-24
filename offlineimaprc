@@ -19,6 +19,7 @@ remoteuser = toby@tcrawley.org
 remotepasseval = get_password_emacs("mail.tcrawley.org", 993)
 maxconnections = 3
 ssl = true
+cert_fingerprint = 6b8c79ab966d70277ba86e6f820859a2b5b8ccc0
 
 [Account gmail]
 localrepository = gmail-local
@@ -36,24 +37,7 @@ remoteuser = tcrawley@gmail.com
 remotepasseval = get_password_emacs("imap.gmail.com", 993)
 realdelete = no
 maxconnections = 3
-folderfilter = lambda name: name in ['INBOX', '[Gmail]/Drafts', '[Gmail]/Sent Mail', '[Gmail]/Trash']
-
-[Account gmail]
-localrepository = gmail-local
-remoterepository = gmail-remote
-status_backend = sqlite
-maxage = 90
-
-[Repository gmail-local]
-type = Maildir
-localfolders = ~/Maildir/gmail.com
-
-[Repository gmail-remote]
-type = Gmail
-remoteuser = tcrawley@gmail.com
-remotepasseval = get_password_emacs("imap.gmail.com", 993)
-realdelete = no
-maxconnections = 3
+cert_fingerprint = 6d1b5b5ee0180ab493b71d3b94534b5ab937d042
 folderfilter = lambda name: name in ['INBOX', '[Gmail]/Drafts', '[Gmail]/Sent Mail', '[Gmail]/Trash']
 
 [Account redhat]
