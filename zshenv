@@ -17,8 +17,8 @@ fi
 # Editors
 #
 
-export EDITOR='vim'
-export VISUAL='vim'
+export EDITOR='zile'
+export VISUAL='zile'
 export PAGER='less'
 
 #
@@ -98,3 +98,5 @@ if [[ -d "$TMPDIR" ]]; then
   fi
 fi
 
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

@@ -2,3 +2,4 @@
 #--type-add=sass=sass
 #--type-add=scss=scss
 --type-add=clj=clj
+--type-add=org=org

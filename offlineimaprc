@@ -19,7 +19,8 @@ remoteuser = toby@tcrawley.org
 remotepasseval = get_password_emacs("mail.tcrawley.org", 993)
 maxconnections = 3
 ssl = true
-cert_fingerprint = 6b8c79ab966d70277ba86e6f820859a2b5b8ccc0
+#cert_fingerprint = 6b8c79ab966d70277ba86e6f820859a2b5b8ccc0
+cert_fingerprint = ee636535ba7399e87f61a54d05887530c71730a0
 
 [Account redhat]
 localrepository = redhat-local
@@ -38,5 +39,6 @@ remoteuser = tcrawley
 remotepasseval = get_password_emacs("mail.corp.redhat.com", 993)
 maxconnections = 3
 ssl = true
-cert_fingerprint = 0127427e72c717e3d381e24ffc4d14c15fbd57f7
+#cert_fingerprint = 0127427e72c717e3d381e24ffc4d14c15fbd57f7
+cert_fingerprint = 60cbf9c935c1f5fb76dcd2fbff01d1911ed9c96e
 folderfilter = lambda name: name not in ['Contacts', 'Emailed Contacts']

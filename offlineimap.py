@@ -8,5 +8,5 @@ def get_output(cmd):
     return output
 
 def get_password_emacs(host, port):
-    cmd = "emacsclient --eval '(tc/get-auth-password \"%s\" \"%s\")'" % (host,port)
+    cmd = "emacsclient --eval '(tc/get-auth-password \"%s\" %s)'" % (host,port)
     return get_output(cmd).strip().lstrip('"').rstrip('"')

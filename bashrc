@@ -93,6 +93,8 @@ unset bash_prompt
 #export JRUBY_HOME=$HOME/.rvm/rubies/jruby-1.5.2/bin/
 #export PATH=$JRUBY_HOME/bin:$PATH
 
-if [ $OSTYPE = "linux-gnu" ] ; then export JAVA_HOME=/usr/java/default/jre ; fi
+#if [ $OSTYPE = "linux-gnu" ] ; then export JAVA_HOME=/usr/java/default/jre ; fi
 
 alias send-dc-patch='git send-email --thread --to=deltacloud-dev@incubator.apache.org --smtp-server=smtp.corp.redhat.com --suppress-cc=author'
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
