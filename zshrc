@@ -39,6 +39,9 @@ alias tbenv='source ~/.tbenv'
 alias imenv='source ~/.imenv'
 alias clearenv='unset IMMUTANT_HOME TORQUEBOX_HOME JBOSS_HOME'
 alias emacspreso='EMACS_PRESENTATION_MODE=1 emacs'
+alias jruby-env='source ~/.jruby-env'
+alias open=xdg-open
+alias yi='sudo yum install -y'
 
 if [ -f "$HOME/.java.env" ]; then
    #source "$HOME/.java.env";
