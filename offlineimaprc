@@ -1,5 +1,5 @@
 [general]
-accounts = tcrawley, redhat
+accounts = redhat
 pythonfile = ~/.offlineimap.py
 maxsyncaccounts = 3
 
@@ -42,3 +42,23 @@ ssl = true
 #cert_fingerprint = 0127427e72c717e3d381e24ffc4d14c15fbd57f7
 cert_fingerprint = 60cbf9c935c1f5fb76dcd2fbff01d1911ed9c96e
 folderfilter = lambda folder: not re.search("Contacts|Archive|Chat|apple-users|two-factor|Trash", folder)
+
+[Account gmail]
+localrepository = gmail-local
+remoterepository = gmail-remote
+status_backend = sqlite
+maxage = 90
+
+[Repository gmail-local]
+type = Maildir
+localfolders = ~/Maildir/gmail.com
+
+[Repository gmail-remote]
+type = Gmail
+remoteuser = tcrawley@gmail.com
+remotepasseval = get_password_emacs("imap.gmail.com", 993)
+realdelete = no
+maxconnections = 3
+ssl = yes
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+#folderfilter = lambda name: name in ['INBOX', '[Gmail]/Drafts', '[Gmail]/Sent Mail', '[Gmail]/Trash']
