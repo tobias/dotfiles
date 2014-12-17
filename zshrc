@@ -47,4 +47,6 @@ if [ -f "$HOME/.java.env" ]; then
    #source "$HOME/.java.env";
 fi
 
+export BOOT_JVM_OPTIONS="-client -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -Xmx2g -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -Xverify:none"
+
 #rvm use system
