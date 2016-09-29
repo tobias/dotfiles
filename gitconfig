@@ -1,0 +1,14 @@
+[push]
+	default = tracking
+[alias]
+        frebase = !"BRANCH=$(git symbolic-ref HEAD | sed 's|refs/heads/||') && git fetch && git rebase origin/$BRANCH"
+	lg = log --graph --pretty=format:'%Cred%h%Creset:%C(yellow)%d%Creset %s - %an %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+        llog = !"BRANCH=$(git symbolic-ref HEAD | sed 's|refs/heads/||') && git lg origin/$BRANCH..."
+        rlog = !"BRANCH=$(git symbolic-ref HEAD | sed 's|refs/heads/||') && git fetch && git lg $BRANCH..origin/$BRANCH"
+[core]
+	excludesfile = ~/.gitignore
+	editor = zile
+[commit]
+	gpgsign = true
+[include]
+        path = .gitconfig.private
